@@ -333,6 +333,8 @@ class Resource(six.with_metaclass(DeclarativeMetaclass)):
                                 real_dry_run)
                 else:
                     self.import_obj(instance, row, real_dry_run)
+                    if original:
+                        row_result.object_id = original.pk
                     if self.skip_row(instance, original):
                         row_result.import_type = RowResult.IMPORT_TYPE_SKIP
                     else:
